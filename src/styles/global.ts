@@ -2,14 +2,13 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --background: #f0f2f5;
+    --background: #03045e;
     --red: #e52e4d;
     --green: #33cc95;
     --blue: #5429cc;
     --blue-light: #6933ff;
     --text-title: #363f5f;
     --text-body: #969cb3;
-    --background: #f0f2f5;
     --shape: #ffffff;
   }
   * {
@@ -36,11 +35,54 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 600;
   }
+
+  h2{
+    color: var(--text-body);
+  }
+  
   button {
     cursor: pointer;
   }
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .modal-overlay{
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content{
+    width: 100%;
+    max-width: 580px;
+    padding: 3rem;
+    border-radius: 0.25rem;
+
+    background-color: var(--background);
+    position: relative;
+  }
+
+  .modal-close-button{
+    position: absolute;
+    top: 21px;
+    right: 21px;
+
+    cursor: pointer;
+
+    transition: filter 0.3s;
+
+    &:hover{
+      filter: brightness(0.8);
+    }
   }
   `;
