@@ -11,7 +11,7 @@ const colors = {
   red: "#e52e4d",
 };
 
-export const Container = styled.div`
+export const Container = styled.form`
   h2 {
     margin-bottom: 2rem;
     margin-top: 1rem;

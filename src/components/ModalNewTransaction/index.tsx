@@ -1,3 +1,4 @@
+import { FormEvent, useContext, useState } from "react";
 import Modal from "react-modal";
 
 import { Container, RadioBox, TypeTransactionContainer } from "./styles";
@@ -5,8 +6,7 @@ import { Container, RadioBox, TypeTransactionContainer } from "./styles";
 import closeSvg from "../../assets/close.svg";
 import incomeSvg from "../../assets/income.svg";
 import outcomeSvg from "../../assets/outcome.svg";
-import { FormEvent, useState } from "react";
-import { api } from "../../services/api";
+import { TransactionsContext } from "../../contexts/useTransaction";
 
 interface ModalProps {
   onRequestClose: () => void;
@@ -16,16 +16,32 @@ interface ModalProps {
 Modal.setAppElement("#root");
 
 export function ModalNewTransaction({ onRequestClose, isOpen }: ModalProps) {
+  const { transactions, createTransaction } = useContext(TransactionsContext);
+
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [type, setType] = useState("income");
   const [category, setCategory] = useState("");
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = { title, price, type, category };
-    api.post('/transactions', data);
+    try {
+      createTransaction({
+        title,
+        amount,
+        category,
+        type,
+      });
+
+      setTitle("");
+      setAmount(0);
+      setCategory("");
+      setType("income");
+      onRequestClose();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -45,11 +61,13 @@ export function ModalNewTransaction({ onRequestClose, isOpen }: ModalProps) {
         <h2>Cadastrar transação</h2>
         <input
           placeholder="Título"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
           placeholder="Preço"
-          onChange={(e) => setPrice(Number(e.target.value))}
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
         />
 
         <TypeTransactionContainer>
@@ -75,6 +93,7 @@ export function ModalNewTransaction({ onRequestClose, isOpen }: ModalProps) {
 
         <input
           placeholder="Categoria"
+          value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
         <button type="submit">Cadastrar</button>
