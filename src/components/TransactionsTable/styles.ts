@@ -40,5 +40,5 @@ export const Table = styled.table`
 
 export const Container = styled.div`
   overflow-x: auto;
-  width: 90vw;
+  width: 100%;
 `;
