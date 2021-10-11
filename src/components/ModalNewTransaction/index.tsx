@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import Modal from "react-modal";
 
 import { Container, RadioBox, TypeTransactionContainer } from "./styles";
@@ -6,7 +6,7 @@ import { Container, RadioBox, TypeTransactionContainer } from "./styles";
 import closeSvg from "../../assets/close.svg";
 import incomeSvg from "../../assets/income.svg";
 import outcomeSvg from "../../assets/outcome.svg";
-import { TransactionsContext } from "../../contexts/useTransaction";
+import { useTransactions } from "../../contexts/useTransactions";
 
 interface ModalProps {
   onRequestClose: () => void;
@@ -16,7 +16,7 @@ interface ModalProps {
 Modal.setAppElement("#root");
 
 export function ModalNewTransaction({ onRequestClose, isOpen }: ModalProps) {
-  const { transactions, createTransaction } = useContext(TransactionsContext);
+  const { createTransaction } = useTransactions();
 
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState(0);

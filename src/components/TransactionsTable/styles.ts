@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.table`
+export const Table = styled.table`
   width: 100%;
   margin-top: 4rem;
   border-spacing: 0 0.5rem;
+  padding-bottom: 2rem;
 
   th {
     padding: 1 2rem;
@@ -35,4 +36,9 @@ export const Container = styled.table`
   td > tr {
     border-radius: 0.25rem;
   }
+`;
+
+export const Container = styled.div`
+  overflow-x: auto;
+  width: 90vw;
 `;

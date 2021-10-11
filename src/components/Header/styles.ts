@@ -11,6 +11,11 @@ export const HeaderContent = styled.div`
   margin: 0 auto;
   max-width: 1100px;
   padding: 2rem 1rem 12rem;
+
+  @media (max-width: 700px) {
+    gap: 2rem;
+    flex-direction: column;
+  }
 `;
 
 export const Button = styled.button`

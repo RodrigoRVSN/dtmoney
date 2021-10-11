@@ -9,6 +9,8 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 `;
 
 export const CardContent = styled.div<Props>`

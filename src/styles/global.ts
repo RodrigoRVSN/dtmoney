@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: var(--background);
     -webkit-font-smoothing: antialiased;
+    overflow: hidden;
   }
   body, input, textarea, button {
     font-family: "Poppins", sans-serif;
@@ -84,5 +85,14 @@ export const GlobalStyle = createGlobalStyle`
     &:hover{
       filter: brightness(0.8);
     }
+  }
+
+  ::-webkit-scrollbar{
+    background-color: var(--background);
+    height: 0.5rem;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: var(--blue-light);
+    border-radius: 1rem;
   }
   `;
